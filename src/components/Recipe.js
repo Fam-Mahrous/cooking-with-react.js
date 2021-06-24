@@ -1,21 +1,28 @@
-import React,{useContext} from"react";
+import React, { useContext} from "react";
 
 import RecipesContext from "../context/recipesContext";
 
 import { IngredientList } from "./IngredientList";
 
 export const Recipe = (props) => {
-  const { id,name, cookTime, servings, instructions, ingredients } = props;
+  const { id, name, cookTime, servings, instructions, ingredients } = props;
 
-  const {handleDelete}=useContext(RecipesContext);
+  const { handleDelete, handleRecipeSelect } = useContext(RecipesContext);
 
   return (
     <div className="recipe">
       <div className="recipe__header">
         <h3 className="recipe__title">{name}</h3>
         <div>
-          <button className="btn btn--primary mr-1">Edit</button>
-          <button className="btn btn--danger" onClick={()=>handleDelete(id)}>Delete</button>
+          <button
+            className="btn btn--primary mr-1"
+            onClick={() => handleRecipeSelect(id)}
+          >
+            Edit
+          </button>
+          <button className="btn btn--danger" onClick={() => handleDelete(id)}>
+            Delete
+          </button>
         </div>
       </div>
 
@@ -31,7 +38,9 @@ export const Recipe = (props) => {
 
       <div className="recipe__row">
         <span className="recipe__label">Instructions:</span>
-        <div className="recipe__value recipe__instructions recipe__value--indented">{instructions}</div>
+        <div className="recipe__value recipe__instructions recipe__value--indented">
+          {instructions}
+        </div>
       </div>
 
       <div className="recipe__row">
